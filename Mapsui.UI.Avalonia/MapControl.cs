@@ -2,7 +2,6 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Media;
-using Avalonia.Platform;
 using Avalonia.Rendering.SceneGraph;
 using Avalonia.Skia;
 using Avalonia.Threading;
@@ -217,7 +216,7 @@ public partial class MapControl : UserControl, IMapControl, IDisposable
 
         public void Render(ImmediateDrawingContext context)
         {
-            var leaseFeature = context.TryGetFeature<ISkiaSharpApiLeaseFeature>();
+            var leaseFeature = context.TryGetFeature(typeof(ISkiaSharpApiLeaseFeature)) as ISkiaSharpApiLeaseFeature;
             if (leaseFeature == null)
                 return;
             using var lease = leaseFeature.Lease();
