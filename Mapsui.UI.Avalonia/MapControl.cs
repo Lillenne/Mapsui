@@ -202,7 +202,7 @@ public partial class MapControl : UserControl, IMapControl, IDisposable
 
     public float? GetPixelDensity()
     {
-        return (float?)VisualRoot?.RenderScaling;
+        return (float?)TopLevel.GetTopLevel(this)?.RenderScaling;
     }
 
     private sealed class MapsuiCustomDrawOperation(Rect bounds, RenderController? renderController, Action<object?> setGpuContext) : ICustomDrawOperation
